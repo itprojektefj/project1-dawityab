@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+
+     Online books
+{% endblock %}
+
+{% block body %}
+
+<h2>Search Books</h2>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form action="{{ url_for('afterlogin')}}" method="GET">
+                <input type="search" name="search" placeholder="Search books ">
+<button type="button" class="button-style"> <a href="{{url_for('afterlogin')}}">Search</a></button>
+            </form>
+</div>
+
+
+
+        <div class="col-6">
+<button type="button" class="button-style"> <a href="{{url_for('index')}}">Logout</a></button>
+
+</div>
+
+    </div>
+</div>
+
+{% endblock %}

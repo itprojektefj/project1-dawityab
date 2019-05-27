@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+     Login 
+{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container">
+    <div class="row">
+         <div class="col-sm-6">
+
+
+<form action="{{ url_for('afterlogin')}}" method="POST">
+
+   <input type="email" name="user_email" placeholder="Email" value="{{
+          request.form.email }}">
+    <input type="password" name="password" placeholder="Password" value="{{
+          request.form.password }}">
+
+
+     <button class="button-style">Login</button>
+
+ </form>
+
+
+    </div>
+         <div class="col-sm-6">
+              <img src="login.jpg">
+         </div>
+    </div>
+</div>
+{% endblock %}
