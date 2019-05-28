@@ -19,7 +19,6 @@ app.config['SESSION_TYPE'] = 'filesystem'
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 
-#
 #engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], convert_unicode=True)
 #db_session = sessionmaker(
  #   autocommit=False,
@@ -61,14 +60,15 @@ class Books(db.Model):
     def __repr__(self):
             return '<Books %r>' %(self.title)
 
+
 db.create_all()
 
 
 @app.route('/')
 def index():
-  image_file = url_for('static', filename="css/books.jpg")
+    image_file = url_for('static', filename="css/books.jpg")
 
-  return render_template("index.html", image_file=image_file)
+    return render_template("index.html", image_file=image_file)
 
 
 @app.route("/register", methods=["GET"])
@@ -122,7 +122,6 @@ def login_post():
 
 
 @app.route("/after-login", methods=["POST","GET"])
-
 def afterlogin():
     flash("Profile Page")
 
