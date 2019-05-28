@@ -2,9 +2,8 @@ import os
 from flask import Flask, render_template, session, redirect, url_for, request, flash
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import sessionmaker
-from flask_session import Session
-from sqlalchemy import create_engine
+#from sqlalchemy.orm import sessionmaker
+#from sqlalchemy import create_engine
 from werkzeug.security import generate_password_hash, check_password_hash
 from form import RegistrationForm, LoginForm
 
@@ -19,13 +18,13 @@ app.config["SESSION_PERMANENT"] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
-Session(app)
 
-engine = create_engine('sqlite:///C:/sqlite/reader_online.db', convert_unicode=True)
-db_session = sessionmaker(
-    autocommit=False,
-    autoflush=False,
-    bind=engine)
+#
+#engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], convert_unicode=True)
+#db_session = sessionmaker(
+ #   autocommit=False,
+  #  autoflush=False,
+  #  bind=engine)
 
 class User(db.Model):
     __tablename__ = "user"
@@ -62,7 +61,7 @@ class Books(db.Model):
     def __repr__(self):
             return '<Books %r>' %(self.title)
 
-db.metadata.create_all(engine)
+db.create_all()
 
 
 @app.route('/')
@@ -92,9 +91,9 @@ def register():
                     user_email=form.user_email.data,
                     password=form.password.data,
                     confirm_password=hashed_password)
-    session=db_session()
-    session.add(user)
-    session.commit()
+
+    db.session.add(user)
+    db.session.commit()
 
     flash('Your account has been created.You can now login','success')
 
@@ -153,4 +152,5 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run()
+    db.create_all()
+    app.run(debug = True)
