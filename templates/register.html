@@ -13,32 +13,33 @@
 <div class="col-sm-6">
 
 
-<form action="{{ url_for('index')}}" method=["POST"] class="form-styles">
+<form action="/register" method="POST" class="form-styles">
 
-     <input type="email" name="user_email" placeholder="Email" value="{{
-          request.form.email }}">
-    <br>
-    <br>
-     <input type="text" name="username" placeholder="User name" value="{{
+    <div class="form-group">
+    <label for="email"> Email:</label>
+     <input type="email" class="form-control" name="user_email" placeholder="Email" value="{{
+          request.form.user_email }}">
+        </div>
+    <div class="form-grop">
+    <label for="username">User name:</label>
+     <input type="text" class="form-control" name="username" placeholder="User name" value="{{
           request.form.username }}">
-    <br>
-    <br>
-     <input type="password" name="password" placeholder="Password" value="{{
+    </div>
+    <div class="form-grop">
+    <label for="password">Password:</label>
+     <input type="password" class="form-control" name="password" placeholder="Password" value="{{
           request.form.password }}">
-    <br>
-    <br>
-     <input type="password" name="confirm_password" placeholder="Confirm Password" value="{{
+    </div>
+    <div class="form-grop">
+    <label for="confirm_password">Confirm Password:</label>
+     <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" value="{{
           request.form.confirm_password }}">
-
-
-
+    </div>
 
      <button  class="button-style">Register</button>
 </form>
-</form>
-
-
 </div>
+
         <div class="col-sm-6">
 
 
