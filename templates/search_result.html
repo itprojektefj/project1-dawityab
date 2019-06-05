@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+<h1> Search result </h1>
+{% endblock %}
+
+{% block body %}
+<form  action="{{ url_for('afterlogin')}}" method="GET">
+    <div class="container">
+
+  <h2>{{ titles.title }}</h2>
+        <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year of Published</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ titles.title }}</td>
+        <td>{{ titles.author }}</td>
+        <td>{{ titles.year }}</td>
+      </tr>
+
+    </tbody>
+  </table>
+        <button type="submit" class="btn btn-primary">ok</button>
+</div>
+
+
+</form>
+
+{% endblock %}

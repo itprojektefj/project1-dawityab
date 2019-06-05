@@ -1,42 +1,41 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-     Login 
+<h1>Login </h1>
 {% endblock %}
 
 {% block body %}
 
 
-
 <div class="container">
     <div class="row">
-         <div class="col-sm-6">
-
-
-<form action="{{ url_for('afterlogin')}}" method="POST">
+<div class="col-sm-6">
+        <form action="{{ url_for('login')}}" method="POST">
 
     <div class="form-group">
-    <label for="email"> Email:</label>
+    <label for="email" class="lable-styles"> Email:</label>
      <input type="email" class="form-control" name="user_email" placeholder="Email" value="{{
-          request.form.email }}">
+          request.form.user_email }}">
         </div>
+
    <div class="form-group">
-    <label for="password"> Password:</label>
+    <label for="password" class="lable-styles"> Password:</label>
      <input type="password" class="form-control" name="password" placeholder="Password" value="{{
           request.form.password }}">
         </div>
 
-
-
-     <button class="button-style">Login</button>
+            <button type="submit" class="btn btn-primary">Login</button>
 
  </form>
 
+</div>
 
-    </div>
+
          <div class="col-sm-6">
-             <img src={{ image_file}} width="500px" height="500px" >
+             <img class="image-styles" src={{ image_file}}  >
          </div>
     </div>
 </div>
+
+
 {% endblock %}
