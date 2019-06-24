@@ -18,7 +18,17 @@ class LoginForm(FlaskForm):
 
 
 class SearchForm(FlaskForm):
-    title = StringField('title', validators=[DataRequired()])
+     title = StringField('title', validators=[DataRequired(), Length(max=50)])
+     author = StringField('author', validators=[DataRequired, Length(max=50)])
+     isbn = StringField('isbn', validators=[DataRequired, Length(max=30)])
+     year = StringField('year', validators=[DataRequired])
+class Comment(FlaskForm):
+    text = StringField('text', validators=[DataRequired(), Length(max=140)])
+    authoruser = StringField('authoruser', validators=[DataRequired(), Length(max=50)])
+    isbn = StringField('isbn', validators=[DataRequired, Length(max=30)])
+    rating = StringField('rating', validators=[DataRequired, Length(max=5)])
+    date = StringField('date', validators=[DataRequired])
+
 
 
 

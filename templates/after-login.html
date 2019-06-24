@@ -2,34 +2,62 @@
 
 {% block heading %}
 
-<h1>Online books</h1>
+
 {% endblock %}
 
 {% block body %}
-<h3>Profile Page</h3>
-
-<h2>Search Books</h2>
-
 
 <div class="container">
     <div class="row">
-        <div class="col-6">
+        <div class="col-sm-6">
+            <div class="p-3 mb-2 bg-info text-white">
+             <div class="p-3 mb-2 bg-dark text-white">
+                <h3>Online books</h3>
+             </div>
+               <h4>Profile Page</h4>
+                <h4>Search Books</h4>
+
+
+
             <form action="{{ url_for('search_result')}}" method="POST">
-                <input type="search" name="title" placeholder="Search books ">
-<button type="submit" class="btn btn-primary">Search</button>
+                 <input type="search" name="isbn" placeholder="Enter Isbn ">
+                 <br><br>
+                 <input type="search" name="title" placeholder="Enter Title ">
+                 <br><br>
+                 <input type="search" name="author" placeholder="Enter Author ">
+                 <br><br>
+                <button type="submit" class="btn btn-primary">Search</button>
             </form>
+
+
+</div>
 </div>
 
 
 
-        <div class="col-6">
-            <form action="{{ url_for('logout')}}" method="POST">
-<button type="submit" class="btn btn-primary">Logout</button>
-            </form>
+        <div class="col-sm-6">
+<br>
+
+
+
 
         </div>
+        <div class="col-12">
+           <div class="p-2 mb-2 mt-2 bg-info">
+                <form action="{{ url_for('logout')}}" method="POST">
 
-    </div>
+<button type="submit" class="btn btn-primary">Logout</button>
+<hr>
+ <img class="image-styles" src={{ image_file}}  >
+
+            </form>
+
+
+        </div>
+        </div>
+
+
+
 </div>
 
 {% endblock %}

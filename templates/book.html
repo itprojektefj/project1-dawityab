@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+
+{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+   <div class="p-3 mb-2 mt-2 bg-dark text-white"> <h3>Review Page</h3></div>
+
+
+<form  action="{{ url_for('afterlogin')}}" method="GET">
+   <div class="p-3 mb-2 bg-info text-dark">
+ <h4>{{ book.title }}</h4>
+   </div>
+<div class="col-sm-6">
+     <div class="p-3 mb-2 bg-info text-white">
+         <b> ISBN-NO - </b>{{  book.isbn }}
+     </div>
+     <div class="p-3 mb-2 bg-info text-white">
+          <b>TITLE OF THE BOOK - </b> {{ book.title }}
+      </div>
+     <div class="p-3 mb-2 bg-info text-white">
+          <b> AUTHOR OF THE BOOK - </b> {{ book.author }}
+      </div>
+     <div class="p-3 mb-2 bg-info text-white">
+          <b>YEAR OF PUBLISHED - </b> {{ book.year }}
+      </div>
+
+
+    <button  type="submit" class="btn btn-primary">Back</button>
+
+</div>
+
+
+</form>
+</div>
+
+<br>
+    <div class="container">
+   <div class="p-3 mb-2 bg-info text-white">
+       <div class="col-sm-6">
+
+
+<form action="/book_review/{{ book.isbn }}" method="POST">
+    <label for="authoruser" class="lable-styles">Name</label>
+    <input type="text" class="form-control" name="authoruser" placeholder="Name" value=" {{ request.form.authoruser }}">
+           <label for="comment" class="lable-styles">Comment:</label>
+    <textarea class ="form-control" name="text" id="comment"   placeholder="Enter text here..." value="{{ request.form.text }}"></textarea>
+      <label for="rating" class="lable-styles">Rating</label>
+     <input type="number" class="form-control" name="rating" placeholder="Rating" value=" {{ request.form.rating }}">
+<br>
+ <input type="submit" value="Share" class="btn btn-primary">
+
+
+    {% if allreview %}
+        {% for entry in allreview %}
+            <ul>
+              <li>{{ entry.authoruser }}</li>
+                <li>{{ entry.text }}</li>
+                <li>{{ entry.rating }}</li>
+                <li>{{ entry.date }}</li>
+                </ul>
+           {% endfor %}
+           {% else %}
+           <h3>review not found</h3>
+            {% endif %}
+
+
+
+</form>
+
+
+       </div>
+   </div>
+    </div>
+{% endblock %}

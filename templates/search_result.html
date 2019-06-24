@@ -1,35 +1,87 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-<h1> Search result </h1>
+
 {% endblock %}
 
 {% block body %}
-<form  action="{{ url_for('afterlogin')}}" method="GET">
-    <div class="container">
 
-  <h2>{{ titles.title }}</h2>
+
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+<div class="p-3 mb-2 mt-2 bg-dark text-white">
+
+<h3> Search result </h3>
+    <div class="p-3 mb-2 mt-2 bg-info text-white">
+
+    {% if title and author %}
+
+        <h5>Title: {{ title }}</h5>
+     <h5>Author: {{ author }}</h5>
+    {% elif author %}
+        <h5>Author: {{ author }}</h5>
+     {% else %}
+     <h5>Title: {{ title }}</h5>
+    {% endif %}
+    </div>
+</div>
+        <div class="p-3 mb-2 bg-info text-white">
+
         <table class="table table-striped">
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Year of Published</th>
+        <th>ISBN</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>YEAR OF PUBLISHED</th>
+          <th>DETAILS</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>{{ titles.title }}</td>
-        <td>{{ titles.author }}</td>
-        <td>{{ titles.year }}</td>
-      </tr>
+
+     <tbody>
+     {% if books_retrieved %}
+        {% for t in books_retrieved %}
+
+            <tr >
+                <td>{{ t.isbn }}</td>
+                <td> {{ t.title }}</td>
+                <td> {{ t.author }}</td>
+                <td>{{ t.year }}</td>
+                <td>
+                     <a href="book_review/{{ t.isbn }}">
+
+                    <button class="btn btn-primary">Details</button>
+                  </a>
+                </td>
+
+            </tr>
+
+        {% endfor %}
+     {% else %}
+        <h3>The book not found!</h3>
+     {% endif %}
+
 
     </tbody>
+
   </table>
-        <button type="submit" class="btn btn-primary">ok</button>
+        </div>
 </div>
 
+</div>
 
-</form>
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+
+
+
+ <form  action="{{ url_for('afterlogin')}}" method="GET">
+
+      <button type="submit" class="btn btn-primary">Back</button>
+
+ </form>
+ </div>
+</div>
+
 
 {% endblock %}
